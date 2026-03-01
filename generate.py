@@ -99,8 +99,10 @@ while i < len(lines):
         continue
     i += 1
 
-total_pnl_pct = (total_pnl / total_cost * 100) if total_cost > 0 else 0
+STARTING_CAPITAL = 10000
 portfolio_total = cash + total_value
+total_pnl = portfolio_total - STARTING_CAPITAL
+total_pnl_pct = (total_pnl / STARTING_CAPITAL * 100) if STARTING_CAPITAL > 0 else 0
 
 # Sort by P&L descending
 all_sorted = sorted(live_data, key=lambda x: x["pnl"], reverse=True)
