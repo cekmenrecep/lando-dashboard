@@ -10,165 +10,272 @@
 body { background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-serif; padding: 16px; min-height: 100vh; }
 .header { text-align: center; padding: 20px 0; }
 .header h1 { font-size: 1.8em; background: linear-gradient(135deg, #00d4aa, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.header .subtitle { color: #888; margin-top: 6px; font-size: 0.85em; }
+.header .sub { color: #888; margin-top: 6px; font-size: 0.85em; }
 .target { text-align: center; margin: 10px 0; padding: 12px; background: #14141f; border-radius: 12px; border: 1px solid #222; }
 .target .goal { font-size: 0.8em; color: #7c4dff; }
 .target .car { font-size: 1.4em; }
-.stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 16px 0; }
-@media(min-width: 600px) { .stats-row { grid-template-columns: repeat(4, 1fr); } }
-.stat-card { background: #14141f; border-radius: 12px; padding: 14px; border: 1px solid #222; }
-.stat-card .label { color: #888; font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; }
-.stat-card .value { font-size: 1.5em; font-weight: 700; margin-top: 4px; }
-.green { color: #00d4aa; }
-.red { color: #ff4757; }
-.neutral { color: #e0e0e0; }
-.section { margin: 24px 0; }
-.section h2 { font-size: 1.1em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.badge { background: #222; padding: 2px 8px; border-radius: 12px; font-size: 0.7em; color: #888; }
-.position { background: #14141f; border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; border: 1px solid #222; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-.position:hover { border-color: #444; }
-.position .left { flex: 1; min-width: 180px; }
-.position .name { font-weight: 600; font-size: 0.95em; }
-.position .meta { color: #666; font-size: 0.75em; margin-top: 3px; }
-.position .right { text-align: right; }
-.position .pnl { font-size: 1.05em; font-weight: 700; }
-.position .details { color: #888; font-size: 0.75em; margin-top: 3px; }
-.risk-tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 0.65em; font-weight: 600; margin-left: 6px; }
-.risk-safe { background: #00d4aa22; color: #00d4aa; }
-.risk-yolo { background: #ffa50022; color: #ffa500; }
-.risk-moon { background: #7c4dff22; color: #7c4dff; }
-.progress-bar { width: 100%; height: 8px; background: #222; border-radius: 4px; margin-top: 10px; overflow: hidden; }
-.progress-fill { height: 100%; border-radius: 4px; }
-.history { margin-top: 24px; }
-.trade { display: flex; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid #1a1a2a; font-size: 0.8em; }
-.footer { text-align: center; padding: 24px 0; color: #444; font-size: 0.75em; }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 16px 0; }
+@media(min-width:600px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.sc { background: #14141f; border-radius: 12px; padding: 14px; border: 1px solid #222; }
+.sc .l { color: #888; font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; }
+.sc .v { font-size: 1.5em; font-weight: 700; margin-top: 4px; }
+.g { color: #00d4aa; } .r { color: #ff4757; } .n { color: #e0e0e0; }
+.sec { margin: 24px 0; }
+.sec h2 { font-size: 1.1em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.bdg { background: #222; padding: 2px 8px; border-radius: 12px; font-size: 0.7em; color: #888; }
+.pos { background: #14141f; border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; border: 1px solid #222; }
+.pos:hover { border-color: #444; }
+.pos .top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.pos .nm { font-weight: 600; font-size: 0.95em; }
+.pos .desc { color: #999; font-size: 0.75em; margin-top: 2px; font-style: italic; }
+.pos .mt { color: #666; font-size: 0.75em; margin-top: 3px; }
+.pos .rt { text-align: right; }
+.pos .pnl { font-size: 1.05em; font-weight: 700; }
+.pos .dt { color: #888; font-size: 0.75em; margin-top: 3px; }
+.rt-s { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 0.65em; font-weight: 600; margin-left: 6px; }
+.rt-safe { background: #00d4aa22; color: #00d4aa; }
+.rt-yolo { background: #ffa50022; color: #ffa500; }
+.rt-moon { background: #7c4dff22; color: #7c4dff; }
+.pb { width: 100%; height: 8px; background: #222; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+.pf { height: 100%; border-radius: 4px; }
+.hist { margin-top: 24px; }
+.tr { display: flex; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid #1a1a2a; font-size: 0.8em; }
+.ft { text-align: center; padding: 24px 0; color: #444; font-size: 0.75em; }
 </style>
 </head>
 <body>
 <div class="header">
     <h1>🎰 Lando's Paper Trading</h1>
-    <div class="subtitle">Polymarket • 2026-03-01 13:54 UTC</div>
+    <div class="sub">Polymarket • 2026-03-01 14:17 UTC</div>
 </div>
 <div class="target">
     <div class="car">🚗 G-Wagon Challenge</div>
-    <div class="goal">$10,002 / $180,000 (5.56%)</div>
-    <div class="progress-bar"><div class="progress-fill" style="width: 5.6%; background: linear-gradient(90deg, #00d4aa, #7c4dff);"></div></div>
+    <div class="goal">$9,999 / $180,000 (5.56%)</div>
+    <div class="pb"><div class="pf" style="width:5.6%;background:linear-gradient(90deg,#00d4aa,#7c4dff);"></div></div>
 </div>
-<div class="stats-row">
-    <div class="stat-card"><div class="label">💰 Portföy</div><div class="value neutral">$10,002.11</div></div>
-    <div class="stat-card"><div class="label">📊 Yatırılan</div><div class="value neutral">$10,000.00</div></div>
-    <div class="stat-card"><div class="label">📈 P&L</div><div class="value green">+$2.11 (+0.0%)</div></div>
-    <div class="stat-card"><div class="label">💵 Nakit</div><div class="value neutral">$0.00</div></div>
+<div class="stats">
+    <div class="sc"><div class="l">💰 Portföy</div><div class="v n">$9,999.40</div></div>
+    <div class="sc"><div class="l">📊 Yatırılan</div><div class="v n">$10,000.00</div></div>
+    <div class="sc"><div class="l">📈 P&L</div><div class="v red">$-0.60 (-0.0%)</div></div>
+    <div class="sc"><div class="l">💵 Nakit</div><div class="v n">$0.00</div></div>
 </div>
-<div style="text-align:center; color:#666; font-size:0.75em; margin:4px 0;">
+<div style="text-align:center;color:#666;font-size:0.75em;margin:4px 0;">
     27 pozisyon • 11 güvenli • 15 YOLO • 1 moonshot
 </div>
-<div class="section"><h2>🛡️ Güvenli <span class="badge">11 pos • $6,074</span></h2><div class="position">
-<div class="left"><div class="name">Jessie Buckley<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">1622 sh @ 92.5% → 92.5%</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$1500 → $1500.00</div></div></div><div class="position">
-<div class="left"><div class="name">Shai Gilgeous-Alexander<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">1370 sh @ 73.0% → 72.5%</div></div>
-<div class="right"><div class="pnl red">$-6.85 (-0.7%)</div>
-<div class="details">$1000 → $993.15</div></div></div><div class="position">
-<div class="left"><div class="name">Timothée Chalamet<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">1471 sh @ 68.0% → 67.5%</div></div>
-<div class="right"><div class="pnl red">$-7.35 (-0.7%)</div>
-<div class="details">$1000 → $992.65</div></div></div><div class="position">
-<div class="left"><div class="name">64,000<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">518 sh @ 96.6% → 97.5%</div></div>
-<div class="right"><div class="pnl green">+$4.92 (+1.0%)</div>
-<div class="details">$500 → $504.92</div></div></div><div class="position">
-<div class="left"><div class="name">Sean Penn<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">840 sh @ 59.5% → 59.0%</div></div>
-<div class="right"><div class="pnl red">$-4.20 (-0.8%)</div>
-<div class="details">$500 → $495.80</div></div></div><div class="position">
-<div class="left"><div class="name">No change<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">313 sh @ 95.9% → 95.9%</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$300 → $300.00</div></div></div><div class="position">
-<div class="left"><div class="name">Kon Knueppel<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">548 sh @ 54.8% → 54.5%</div></div>
-<div class="right"><div class="pnl red">$-1.10 (-0.4%)</div>
-<div class="details">$300 → $298.90</div></div></div><div class="position">
-<div class="left"><div class="name">Will the Iranian regime fall before 2027<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">536 sh @ 56.0% → 53.5%</div></div>
-<div class="right"><div class="pnl red">$-13.39 (-4.5%)</div>
-<div class="details">$300 → $286.61</div></div></div><div class="position">
-<div class="left"><div class="name">Kevin Warsh<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">269 sh @ 93.0% → 93.4%</div></div>
-<div class="right"><div class="pnl green">+$1.08 (+0.4%)</div>
-<div class="details">$250 → $251.08</div></div></div><div class="position">
-<div class="left"><div class="name">One Battle After Another<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">292 sh @ 85.5% → 85.5%</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$250 → $250.00</div></div></div><div class="position">
-<div class="left"><div class="name">Drake releases Iceman<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-<div class="meta">221 sh @ 90.3% → 90.6%</div></div>
-<div class="right"><div class="pnl green">+$0.66 (+0.3%)</div>
-<div class="details">$200 → $200.66</div></div></div></div><div class="section"><h2>🎲 YOLO <span class="badge">15 pos • $3,699</span></h2><div class="position">
-<div class="left"><div class="name">Oklahoma City Thunder<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">1408 sh @ 35.5% → 36.5% • 3x pot.</div></div>
-<div class="right"><div class="pnl green">+$14.08 (+2.8%)</div>
-<div class="details">$500 → $514.08</div></div></div><div class="position">
-<div class="left"><div class="name">San Antonio Spurs<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">4184 sh @ 11.9% → 11.9% • 8x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$500 → $500.00</div></div></div><div class="position">
-<div class="left"><div class="name">Amy Madigan<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">1195 sh @ 25.1% → 25.3% • 4x pot.</div></div>
-<div class="right"><div class="pnl green">+$2.39 (+0.8%)</div>
-<div class="details">$300 → $302.39</div></div></div><div class="position">
-<div class="left"><div class="name">Cleveland Cavaliers<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">1224 sh @ 24.5% → 24.5% • 4x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$300 → $300.00</div></div></div><div class="position">
-<div class="left"><div class="name">Spain<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">2020 sh @ 14.8% → 14.8% • 7x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$300 → $300.00</div></div></div><div class="position">
-<div class="left"><div class="name">Sinners<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">3774 sh @ 8.0% → 7.8% • 12x pot.</div></div>
-<div class="right"><div class="pnl red">$-5.66 (-1.9%)</div>
-<div class="details">$300 → $294.34</div></div></div><div class="position">
-<div class="left"><div class="name">Cade Cunningham<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">2985 sh @ 6.7% → 6.9% • 15x pot.</div></div>
-<div class="right"><div class="pnl green">+$4.48 (+2.2%)</div>
-<div class="details">$200 → $204.48</div></div></div><div class="position">
-<div class="left"><div class="name">Leonardo DiCaprio<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">1739 sh @ 11.5% → 11.5% • 9x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$200 → $200.00</div></div></div><div class="position">
-<div class="left"><div class="name">Alexandria Ocasio-Cortez<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">3077 sh @ 6.5% → 6.5% • 15x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$200 → $200.00</div></div></div><div class="position">
-<div class="left"><div class="name">Portugal<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">2721 sh @ 7.3% → 7.3% • 14x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$200 → $200.00</div></div></div><div class="position">
-<div class="left"><div class="name">England<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">1509 sh @ 13.2% → 13.2% • 8x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$200 → $200.00</div></div></div><div class="position">
-<div class="left"><div class="name">Teyana Taylor<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">430 sh @ 46.5% → 46.5% • 2x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$200 → $200.00</div></div></div><div class="position">
-<div class="left"><div class="name">June 30, 2026<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">2020 sh @ 5.0% → 5.0% • 20x pot.</div></div>
-<div class="right"><div class="pnl green">+$0.00 (+0.0%)</div>
-<div class="details">$100 → $100.00</div></div></div><div class="position">
-<div class="left"><div class="name">by December 31, 2026<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">741 sh @ 13.5% → 12.5% • 7x pot.</div></div>
-<div class="right"><div class="pnl red">$-7.41 (-7.4%)</div>
-<div class="details">$100 → $92.59</div></div></div><div class="position">
-<div class="left"><div class="name">March 31, 2026<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-<div class="meta">1818 sh @ 5.5% → 5.0% • 18x pot.</div></div>
-<div class="right"><div class="pnl red">$-9.09 (-9.1%)</div>
-<div class="details">$100 → $90.91</div></div></div></div><div class="section"><h2>🌙 Moonshot <span class="badge">1 pos • $230</span></h2><div class="position">
-<div class="left"><div class="name">Victor Wembanyama<span class="risk-tag risk-moon">🌙 Moon</span></div>
-<div class="meta">4545 sh @ 4.4% → 5.1% • 23x pot.</div></div>
-<div class="right"><div class="pnl green">+$29.55 (+14.8%)</div>
-<div class="details">$200 → $229.55</div></div></div></div><div class="history"><h2>📜 Son Trade'ler</h2><div class="trade"><span class="green">ALIŞ</span><span>None</span><span>$300 @ 56.0%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Teyana Taylor</span><span>$200 @ 46.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>England</span><span>$200 @ 13.2%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Cade Cunningham</span><span>$200 @ 6.7%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Spain</span><span>$300 @ 14.8%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Cleveland Cavaliers</span><span>$300 @ 24.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Oklahoma City Thunder</span><span>$500 @ 35.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Sean Penn</span><span>$500 @ 59.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>by December 31, 2026</span><span>$100 @ 13.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Portugal</span><span>$200 @ 7.3%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Alexandria Ocasio-Cortez</span><span>$200 @ 6.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Leonardo DiCaprio</span><span>$200 @ 11.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>San Antonio Spurs</span><span>$500 @ 11.9%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Kon Knueppel</span><span>$300 @ 54.8%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="trade"><span class="green">ALIŞ</span><span>Amy Madigan</span><span>$300 @ 25.1%</span><span style="color:#666">2026-03-01 13:28</span></div></div><div class="footer">🎰 Lando Paper Trading • OpenClaw + Polymarket<br>Hedef: G-Wagon ($180K) 🚗 • Auto-refresh: 30dk</div></body></html>
+<div class="sec"><h2>🛡️ Güvenli <span class="bdg">11 pos • $6,110</span></h2><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Jessie Buckley<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🎬 Oscar 2026 - En İyi Kadın Oyuncu</div>
+<div class="mt">1622 sh @ 92.5% → 92.5%</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$1500 → $1500.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Timothée Chalamet<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🎬 Oscar 2026 - En İyi Erkek Oyuncu</div>
+<div class="mt">1471 sh @ 68.0% → 68.5%</div>
+</div><div class="rt">
+<div class="pnl g">+$7.35 (+0.7%)</div>
+<div class="dt">$1000 → $1007.35</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Shai Gilgeous-Alexander<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🏀 NBA MVP 2026</div>
+<div class="mt">1370 sh @ 73.0% → 73.5%</div>
+</div><div class="rt">
+<div class="pnl g">+$6.85 (+0.7%)</div>
+<div class="dt">$1000 → $1006.85</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">64,000<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">₿ Bitcoin 1 Mart Fiyatı</div>
+<div class="mt">518 sh @ 96.6% → 98.8%</div>
+</div><div class="rt">
+<div class="pnl g">+$11.13 (+2.2%)</div>
+<div class="dt">$500 → $511.13</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Sean Penn<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🎬 Oscar 2026 - En İyi Yardımcı Erkek Oyuncu</div>
+<div class="mt">840 sh @ 59.5% → 59.5%</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$500 → $500.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">No change<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🏦 Fed Mart Toplantısı - Faiz Kararı</div>
+<div class="mt">313 sh @ 95.9% → 96.0%</div>
+</div><div class="rt">
+<div class="pnl g">+$0.31 (+0.1%)</div>
+<div class="dt">$300 → $300.31</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Kon Knueppel<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🏀 NBA Yılın Çaylağı 2026</div>
+<div class="mt">548 sh @ 54.8% → 53.5%</div>
+</div><div class="rt">
+<div class="pnl r">$-6.58 (-2.2%)</div>
+<div class="dt">$300 → $293.42</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Will the Iranian regime fall before 2027<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc"></div>
+<div class="mt">536 sh @ 56.0% → 53.5%</div>
+</div><div class="rt">
+<div class="pnl r">$-13.39 (-4.5%)</div>
+<div class="dt">$300 → $286.61</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">One Battle After Another<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🎬 Oscar 2026 - En İyi Film</div>
+<div class="mt">292 sh @ 85.5% → 86.5%</div>
+</div><div class="rt">
+<div class="pnl g">+$2.92 (+1.2%)</div>
+<div class="dt">$250 → $252.92</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Kevin Warsh<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🏛️ Trump'ın Fed Başkanı Adayı</div>
+<div class="mt">269 sh @ 93.0% → 93.3%</div>
+</div><div class="rt">
+<div class="pnl g">+$0.81 (+0.3%)</div>
+<div class="dt">$250 → $250.81</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Drake releases Iceman<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">🎮 GTA VI'dan Önce Ne Olacak?</div>
+<div class="mt">221 sh @ 90.3% → 90.5%</div>
+</div><div class="rt">
+<div class="pnl g">+$0.33 (+0.2%)</div>
+<div class="dt">$200 → $200.33</div>
+</div></div></div></div><div class="sec"><h2>🎲 YOLO <span class="bdg">15 pos • $3,690</span></h2><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Oklahoma City Thunder<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🏀 2026 NBA Şampiyonu</div>
+<div class="mt">1408 sh @ 35.5% → 36.5% • Tutarsa 3x</div>
+</div><div class="rt">
+<div class="pnl g">+$14.08 (+2.8%)</div>
+<div class="dt">$500 → $514.08</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">San Antonio Spurs<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🏀 2026 NBA Şampiyonu</div>
+<div class="mt">4184 sh @ 11.9% → 11.9% • Tutarsa 8x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$500 → $500.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Amy Madigan<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🎬 Oscar 2026 - En İyi Yardımcı Kadın Oyuncu</div>
+<div class="mt">1195 sh @ 25.1% → 26.2% • Tutarsa 4x</div>
+</div><div class="rt">
+<div class="pnl g">+$12.55 (+4.2%)</div>
+<div class="dt">$300 → $312.55</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Cleveland Cavaliers<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🏀 NBA Doğu Konferansı Şampiyonu</div>
+<div class="mt">1224 sh @ 24.5% → 24.5% • Tutarsa 4x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$300 → $300.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Spain<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">⚽ 2026 FIFA Dünya Kupası Şampiyonu</div>
+<div class="mt">2020 sh @ 14.8% → 14.8% • Tutarsa 7x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$300 → $300.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Sinners<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🎬 Oscar 2026 - En İyi Film</div>
+<div class="mt">3774 sh @ 8.0% → 7.4% • Tutarsa 12x</div>
+</div><div class="rt">
+<div class="pnl r">$-18.87 (-6.3%)</div>
+<div class="dt">$300 → $281.13</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Cade Cunningham<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🏀 NBA MVP 2026</div>
+<div class="mt">2985 sh @ 6.7% → 6.8% • Tutarsa 15x</div>
+</div><div class="rt">
+<div class="pnl g">+$1.49 (+0.7%)</div>
+<div class="dt">$200 → $201.49</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Leonardo DiCaprio<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🎬 Oscar 2026 - En İyi Erkek Oyuncu</div>
+<div class="mt">1739 sh @ 11.5% → 11.5% • Tutarsa 9x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$200 → $200.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Portugal<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">⚽ 2026 FIFA Dünya Kupası Şampiyonu</div>
+<div class="mt">2721 sh @ 7.3% → 7.3% • Tutarsa 14x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$200 → $200.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">England<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">⚽ 2026 FIFA Dünya Kupası Şampiyonu</div>
+<div class="mt">1509 sh @ 13.2% → 13.2% • Tutarsa 8x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$200 → $200.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Teyana Taylor<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🎬 Oscar 2026 - En İyi Yardımcı Kadın Oyuncu</div>
+<div class="mt">430 sh @ 46.5% → 46.5% • Tutarsa 2x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$200 → $200.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Alexandria Ocasio-Cortez<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🇺🇸 2028 ABD Başkanlık Seçimi</div>
+<div class="mt">3077 sh @ 6.5% → 6.4% • Tutarsa 15x</div>
+</div><div class="rt">
+<div class="pnl r">$-3.08 (-1.5%)</div>
+<div class="dt">$200 → $196.92</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">June 30, 2026<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">⚔️ ABD-Rusya Askeri Çatışma</div>
+<div class="mt">2020 sh @ 5.0% → 5.0% • Tutarsa 20x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$100 → $100.00</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">by December 31, 2026<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">₿ Bitcoin Ne Zaman $150K?</div>
+<div class="mt">741 sh @ 13.5% → 12.5% • Tutarsa 7x</div>
+</div><div class="rt">
+<div class="pnl r">$-7.41 (-7.4%)</div>
+<div class="dt">$100 → $92.59</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">March 31, 2026<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">📈 Kraken Halka Arz (IPO)</div>
+<div class="mt">1818 sh @ 5.5% → 5.0% • Tutarsa 18x</div>
+</div><div class="rt">
+<div class="pnl r">$-9.09 (-9.1%)</div>
+<div class="dt">$100 → $90.91</div>
+</div></div></div></div><div class="sec"><h2>🌙 Moonshot <span class="bdg">1 pos • $200</span></h2><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Victor Wembanyama<span class="rt-s rt-moon">🌙 Moon</span></div>
+<div class="desc">🏀 NBA MVP 2026</div>
+<div class="mt">4545 sh @ 4.4% → 4.4% • Tutarsa 23x</div>
+</div><div class="rt">
+<div class="pnl g">+$0.00 (+0.0%)</div>
+<div class="dt">$200 → $200.00</div>
+</div></div></div></div><div class="hist"><h2>📜 Son Trade'ler</h2><div class="tr"><span class="g">ALIŞ</span><span>None (🇮🇷 İran Rejimi 2027'den Önce Düşer mi?)</span><span>$300 @ 56.0%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Teyana Taylor (🎬 Oscar 2026 - En İyi Yardımcı Kadın Oyuncu)</span><span>$200 @ 46.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>England (⚽ 2026 FIFA Dünya Kupası Şampiyonu)</span><span>$200 @ 13.2%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Cade Cunningham (🏀 NBA MVP 2026)</span><span>$200 @ 6.7%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Spain (⚽ 2026 FIFA Dünya Kupası Şampiyonu)</span><span>$300 @ 14.8%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Cleveland Cavaliers (🏀 NBA Doğu Konferansı Şampiyonu)</span><span>$300 @ 24.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Oklahoma City Thunder (🏀 2026 NBA Şampiyonu)</span><span>$500 @ 35.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Sean Penn (🎬 Oscar 2026 - En İyi Yardımcı Erkek Oyuncu)</span><span>$500 @ 59.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>by December 31, 2026 (₿ Bitcoin Ne Zaman $150K?)</span><span>$100 @ 13.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Portugal (⚽ 2026 FIFA Dünya Kupası Şampiyonu)</span><span>$200 @ 7.3%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Alexandria Ocasio-Cortez (🇺🇸 2028 ABD Başkanlık Seçimi)</span><span>$200 @ 6.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Leonardo DiCaprio (🎬 Oscar 2026 - En İyi Erkek Oyuncu)</span><span>$200 @ 11.5%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>San Antonio Spurs (🏀 2026 NBA Şampiyonu)</span><span>$500 @ 11.9%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Kon Knueppel (🏀 NBA Yılın Çaylağı 2026)</span><span>$300 @ 54.8%</span><span style="color:#666">2026-03-01 13:28</span></div><div class="tr"><span class="g">ALIŞ</span><span>Amy Madigan (🎬 Oscar 2026 - En İyi Yardımcı Kadın Oyuncu)</span><span>$300 @ 25.1%</span><span style="color:#666">2026-03-01 13:28</span></div></div><div class="ft">🎰 Lando Paper Trading • OpenClaw + Polymarket<br>Hedef: G-Wagon ($180K) 🚗 • Auto-refresh: 30dk</div></body></html>
