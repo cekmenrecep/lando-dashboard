@@ -9,64 +9,76 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
     background: #0a0a0f; color: #e0e0e0; font-family: 'SF Pro', -apple-system, sans-serif;
-    padding: 20px; min-height: 100vh;
+    padding: 16px; min-height: 100vh;
 }
-.header { text-align: center; padding: 30px 0; }
-.header h1 { font-size: 2em; background: linear-gradient(135deg, #00d4aa, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.header .subtitle { color: #888; margin-top: 8px; font-size: 0.9em; }
-.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
-.stat-card { background: #14141f; border-radius: 16px; padding: 20px; border: 1px solid #222; }
-.stat-card .label { color: #888; font-size: 0.8em; text-transform: uppercase; letter-spacing: 1px; }
-.stat-card .value { font-size: 1.8em; font-weight: 700; margin-top: 6px; }
+.header { text-align: center; padding: 20px 0; }
+.header h1 { font-size: 1.8em; background: linear-gradient(135deg, #00d4aa, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header .subtitle { color: #888; margin-top: 6px; font-size: 0.85em; }
+.target { text-align: center; margin: 10px 0; padding: 12px; background: #14141f; border-radius: 12px; border: 1px solid #222; }
+.target .goal { font-size: 0.8em; color: #7c4dff; }
+.target .car { font-size: 1.4em; }
+.stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 16px 0; }
+@media(min-width: 600px) { .stats-row { grid-template-columns: repeat(4, 1fr); } }
+.stat-card { background: #14141f; border-radius: 12px; padding: 14px; border: 1px solid #222; }
+.stat-card .label { color: #888; font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; }
+.stat-card .value { font-size: 1.5em; font-weight: 700; margin-top: 4px; }
 .stat-card .value.green { color: #00d4aa; }
 .stat-card .value.red { color: #ff4757; }
 .stat-card .value.neutral { color: #e0e0e0; }
-.section { margin: 30px 0; }
-.section h2 { font-size: 1.2em; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-.section h2 .badge { background: #222; padding: 2px 10px; border-radius: 20px; font-size: 0.7em; color: #888; }
-.position { background: #14141f; border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; border: 1px solid #222; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; transition: border-color 0.2s; }
+.section { margin: 24px 0; }
+.section h2 { font-size: 1.1em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.section h2 .badge { background: #222; padding: 2px 8px; border-radius: 12px; font-size: 0.7em; color: #888; }
+.position { background: #14141f; border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; border: 1px solid #222; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
 .position:hover { border-color: #444; }
-.position .left { flex: 1; min-width: 200px; }
-.position .name { font-weight: 600; font-size: 1.05em; }
-.position .meta { color: #666; font-size: 0.8em; margin-top: 4px; }
+.position .left { flex: 1; min-width: 180px; }
+.position .name { font-weight: 600; font-size: 0.95em; }
+.position .meta { color: #666; font-size: 0.75em; margin-top: 3px; }
 .position .right { text-align: right; }
-.position .pnl { font-size: 1.2em; font-weight: 700; }
+.position .pnl { font-size: 1.05em; font-weight: 700; }
 .position .pnl.green { color: #00d4aa; }
 .position .pnl.red { color: #ff4757; }
-.position .details { color: #888; font-size: 0.8em; margin-top: 4px; }
-.history { margin-top: 30px; }
-.history h2 { margin-bottom: 16px; }
-.trade { display: flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #1a1a2a; font-size: 0.85em; }
-.trade .buy { color: #00d4aa; }
-.trade .sell { color: #ff4757; }
-.footer { text-align: center; padding: 30px 0; color: #444; font-size: 0.8em; }
-.risk-tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.7em; font-weight: 600; margin-left: 8px; }
+.position .details { color: #888; font-size: 0.75em; margin-top: 3px; }
+.risk-tag { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 0.65em; font-weight: 600; margin-left: 6px; }
 .risk-safe { background: #00d4aa22; color: #00d4aa; }
 .risk-yolo { background: #ffa50022; color: #ffa500; }
 .risk-moon { background: #7c4dff22; color: #7c4dff; }
-.progress-bar { width: 100%; height: 6px; background: #222; border-radius: 3px; margin-top: 16px; overflow: hidden; }
-.progress-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+.progress-bar { width: 100%; height: 8px; background: #222; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; }
+.history { margin-top: 24px; }
+.history h2 { margin-bottom: 12px; }
+.trade { display: flex; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid #1a1a2a; font-size: 0.8em; }
+.trade .buy { color: #00d4aa; }
+.trade .sell { color: #ff4757; }
+.footer { text-align: center; padding: 24px 0; color: #444; font-size: 0.75em; }
 </style>
 </head>
 <body>
 
 <div class="header">
     <h1>🎰 Lando's Paper Trading</h1>
-    <div class="subtitle">Polymarket • Son güncelleme: 2026-03-01 13:31 UTC</div>
+    <div class="subtitle">Polymarket • 2026-03-01 13:52 UTC</div>
+</div>
+
+<div class="target">
+    <div class="car">🚗 G-Wagon Challenge</div>
+    <div class="goal">$10,000 / $180,000 (5.56%)</div>
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: 5.6%; background: linear-gradient(90deg, #00d4aa, #7c4dff);"></div>
+    </div>
 </div>
 
 <div class="stats-row">
     <div class="stat-card">
-        <div class="label">💰 Toplam Portföy</div>
-        <div class="value neutral">$9,689.12</div>
+        <div class="label">💰 Portföy</div>
+        <div class="value neutral">$10,000.00</div>
     </div>
     <div class="stat-card">
         <div class="label">📊 Yatırılan</div>
-        <div class="value neutral">$9,700.00</div>
+        <div class="value neutral">$10,000.00</div>
     </div>
     <div class="stat-card">
         <div class="label">📈 P&L</div>
-        <div class="value red">$-10.88 (-0.1%)</div>
+        <div class="value green">$+0.00</div>
     </div>
     <div class="stat-card">
         <div class="label">💵 Nakit</div>
@@ -74,245 +86,253 @@ body {
     </div>
 </div>
 
-<div class="progress-bar">
-    <div class="progress-fill" style="width: 100%; background: linear-gradient(90deg, #00d4aa, #7c4dff);"></div>
+<div style="text-align:center; color:#666; font-size:0.75em; margin:4px 0;">
+    27 pozisyon • 11 güvenli • 14 YOLO • 2 moonshot
 </div>
-<div style="text-align: center; color: #666; font-size: 0.75em; margin-top: 6px;">Hedef: $1,000 → $2,000</div>
-<div class="section"><h2>🛡️ Güvenli Pozisyonlar <span class="badge">7 pozisyon</span></h2><div class="position">
-    <div class="left">
-        <div class="name">No change<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-        <div class="meta">313 shares @ 95.9% → 95.9% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$0.16 (+0.1%)</div>
-        <div class="details">Maliyet: $300 → Değer: $300.16</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">Kevin Warsh<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-        <div class="meta">269 shares @ 93.0% → 93.3% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$0.81 (+0.3%)</div>
-        <div class="details">Maliyet: $250 → Değer: $250.81</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">One Battle After Another<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-        <div class="meta">292 shares @ 85.5% → 85.5% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $250 → Değer: $250.00</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">Drake releases Iceman<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-        <div class="meta">221 shares @ 90.3% → 90.5% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$0.44 (+0.2%)</div>
-        <div class="details">Maliyet: $200 → Değer: $200.44</div>
-    </div>
-</div><div class="position">
+<div class="section"><h2>🛡️ Güvenli <span class="badge">11 pos • $6,100</span></h2><div class="position">
     <div class="left">
         <div class="name">Jessie Buckley<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-        <div class="meta">1622 shares @ 92.5% → 92.5% ↑</div>
+        <div class="meta">1622 shares @ 92.5% → 92.5%</div>
     </div>
     <div class="right">
         <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $1500 → Değer: $1500.00</div>
+        <div class="details">$1500 → $1500.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Timothée Chalamet<span class="risk-tag risk-safe">🛡️ Safe</span></div>
+        <div class="meta">1471 shares @ 68.0% → 68.0%</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$1000 → $1000.00</div>
     </div>
 </div><div class="position">
     <div class="left">
         <div class="name">Shai Gilgeous-Alexander<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-        <div class="meta">1370 shares @ 73.0% → 73.0% ↑</div>
+        <div class="meta">1370 shares @ 73.0% → 73.0%</div>
     </div>
     <div class="right">
         <div class="pnl green">+$-0.00 (+-0.0%)</div>
-        <div class="details">Maliyet: $1000 → Değer: $1000.00</div>
+        <div class="details">$1000 → $1000.00</div>
     </div>
 </div><div class="position">
     <div class="left">
         <div class="name">64,000<span class="risk-tag risk-safe">🛡️ Safe</span></div>
-        <div class="meta">518 shares @ 96.6% → 96.7% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$0.52 (+0.1%)</div>
-        <div class="details">Maliyet: $500 → Değer: $500.52</div>
-    </div>
-</div></div><div class="section"><h2>🎲 YOLO Bahisler <span class="badge">17 pozisyon</span></h2><div class="position">
-    <div class="left">
-        <div class="name">March 31, 2026<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">1818 shares @ 5.5% → 5.0% ↓</div>
-    </div>
-    <div class="right">
-        <div class="pnl red">$-9.09 (-9.1%)</div>
-        <div class="details">Maliyet: $100 → Değer: $90.91</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">Timothée Chalamet<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">1471 shares @ 68.0% → 68.0% ↓</div>
+        <div class="meta">518 shares @ 96.6% → 96.6%</div>
     </div>
     <div class="right">
         <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $1000 → Değer: $1000.00</div>
+        <div class="details">$500 → $500.00</div>
     </div>
 </div><div class="position">
     <div class="left">
-        <div class="name">Sinners<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">3774 shares @ 8.0% → 7.9% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl red">$-1.89 (-0.6%)</div>
-        <div class="details">Maliyet: $300 → Değer: $298.11</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">Amy Madigan<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">1195 shares @ 25.1% → 25.1% ↓</div>
+        <div class="name">Sean Penn<span class="risk-tag risk-safe">🛡️ Safe</span></div>
+        <div class="meta">840 shares @ 59.5% → 59.5%</div>
     </div>
     <div class="right">
         <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $300 → Değer: $300.00</div>
+        <div class="details">$500 → $500.00</div>
     </div>
 </div><div class="position">
     <div class="left">
-        <div class="name">Kon Knueppel<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">548 shares @ 54.8% → 54.9% ↑</div>
+        <div class="name">No change<span class="risk-tag risk-safe">🛡️ Safe</span></div>
+        <div class="meta">313 shares @ 95.9% → 95.9%</div>
     </div>
     <div class="right">
-        <div class="pnl green">+$0.82 (+0.3%)</div>
-        <div class="details">Maliyet: $300 → Değer: $300.82</div>
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$300 → $300.00</div>
     </div>
 </div><div class="position">
+    <div class="left">
+        <div class="name">Kon Knueppel<span class="risk-tag risk-safe">🛡️ Safe</span></div>
+        <div class="meta">548 shares @ 54.8% → 54.8%</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$300 → $300.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Will the Iranian regime fall before 2027?<span class="risk-tag risk-safe">🛡️ Safe</span></div>
+        <div class="meta">536 shares @ 56.0% → 56.0%</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$300 → $300.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Kevin Warsh<span class="risk-tag risk-safe">🛡️ Safe</span></div>
+        <div class="meta">269 shares @ 93.0% → 93.0%</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$250 → $250.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">One Battle After Another<span class="risk-tag risk-safe">🛡️ Safe</span></div>
+        <div class="meta">292 shares @ 85.5% → 85.5%</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$250 → $250.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Drake releases Iceman<span class="risk-tag risk-safe">🛡️ Safe</span></div>
+        <div class="meta">221 shares @ 90.3% → 90.3%</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$200 → $200.00</div>
+    </div>
+</div></div><div class="section"><h2>🎲 YOLO <span class="badge">14 pos • $3,600</span></h2><div class="position">
     <div class="left">
         <div class="name">San Antonio Spurs<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">4184 shares @ 11.9% → 11.9% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl red">$-2.09 (-0.4%)</div>
-        <div class="details">Maliyet: $500 → Değer: $497.91</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">Leonardo DiCaprio<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">1739 shares @ 11.5% → 11.5% ↓</div>
+        <div class="meta">4184 shares @ 11.9% → 11.9% • 8x potential</div>
     </div>
     <div class="right">
         <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $200 → Değer: $200.00</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">Alexandria Ocasio-Cortez<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">3077 shares @ 6.5% → 6.5% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $200 → Değer: $200.00</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">Portugal<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">2721 shares @ 7.3% → 7.3% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl red">$-1.36 (-0.7%)</div>
-        <div class="details">Maliyet: $200 → Değer: $198.64</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">by December 31, 2026<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">741 shares @ 13.5% → 13.5% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $100 → Değer: $100.00</div>
-    </div>
-</div><div class="position">
-    <div class="left">
-        <div class="name">Sean Penn<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">840 shares @ 59.5% → 59.5% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $500 → Değer: $500.00</div>
+        <div class="details">$500 → $500.00</div>
     </div>
 </div><div class="position">
     <div class="left">
         <div class="name">Oklahoma City Thunder<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">1408 shares @ 35.5% → 35.5% ↑</div>
+        <div class="meta">1408 shares @ 35.5% → 35.5% • 3x potential</div>
     </div>
     <div class="right">
         <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $500 → Değer: $500.00</div>
+        <div class="details">$500 → $500.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Sinners<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
+        <div class="meta">3774 shares @ 8.0% → 8.0% • 13x potential</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$300 → $300.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Amy Madigan<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
+        <div class="meta">1195 shares @ 25.1% → 25.1% • 4x potential</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$300 → $300.00</div>
     </div>
 </div><div class="position">
     <div class="left">
         <div class="name">Cleveland Cavaliers<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">1224 shares @ 24.5% → 24.5% ↑</div>
+        <div class="meta">1224 shares @ 24.5% → 24.5% • 4x potential</div>
     </div>
     <div class="right">
         <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $300 → Değer: $300.00</div>
+        <div class="details">$300 → $300.00</div>
     </div>
 </div><div class="position">
     <div class="left">
         <div class="name">Spain<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">2020 shares @ 14.8% → 14.8% ↑</div>
+        <div class="meta">2020 shares @ 14.8% → 14.8% • 7x potential</div>
     </div>
     <div class="right">
-        <div class="pnl red">$-1.01 (-0.3%)</div>
-        <div class="details">Maliyet: $300 → Değer: $298.99</div>
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$300 → $300.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Leonardo DiCaprio<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
+        <div class="meta">1739 shares @ 11.5% → 11.5% • 9x potential</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$200 → $200.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Alexandria Ocasio-Cortez<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
+        <div class="meta">3077 shares @ 6.5% → 6.5% • 15x potential</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$200 → $200.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">Portugal<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
+        <div class="meta">2721 shares @ 7.3% → 7.3% • 14x potential</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$200 → $200.00</div>
     </div>
 </div><div class="position">
     <div class="left">
         <div class="name">Cade Cunningham<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">2985 shares @ 6.7% → 6.6% ↑</div>
+        <div class="meta">2985 shares @ 6.7% → 6.7% • 15x potential</div>
     </div>
     <div class="right">
-        <div class="pnl red">$-2.99 (-1.5%)</div>
-        <div class="details">Maliyet: $200 → Değer: $197.01</div>
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$200 → $200.00</div>
     </div>
 </div><div class="position">
     <div class="left">
         <div class="name">England<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">1509 shares @ 13.2% → 13.2% ↑</div>
+        <div class="meta">1509 shares @ 13.2% → 13.2% • 8x potential</div>
     </div>
     <div class="right">
-        <div class="pnl red">$-0.75 (-0.4%)</div>
-        <div class="details">Maliyet: $200 → Değer: $199.25</div>
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$200 → $200.00</div>
     </div>
 </div><div class="position">
     <div class="left">
         <div class="name">Teyana Taylor<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
-        <div class="meta">430 shares @ 46.5% → 46.5% ↓</div>
+        <div class="meta">430 shares @ 46.5% → 46.5% • 2x potential</div>
     </div>
     <div class="right">
         <div class="pnl green">+$0.00 (+0.0%)</div>
-        <div class="details">Maliyet: $200 → Değer: $200.00</div>
-    </div>
-</div></div><div class="section"><h2>🌙 Moonshot <span class="badge">2 pozisyon</span></h2><div class="position">
-    <div class="left">
-        <div class="name">Victor Wembanyama<span class="risk-tag risk-moon">🌙 Moonshot</span></div>
-        <div class="meta">4545 shares @ 4.4% → 4.5% ↑</div>
-    </div>
-    <div class="right">
-        <div class="pnl green">+$4.55 (+2.3%)</div>
-        <div class="details">Maliyet: $200 → Değer: $204.55</div>
+        <div class="details">$200 → $200.00</div>
     </div>
 </div><div class="position">
     <div class="left">
-        <div class="name">June 30, 2026<span class="risk-tag risk-moon">🌙 Moonshot</span></div>
-        <div class="meta">2020 shares @ 5.0% → 5.0% ↑</div>
+        <div class="name">March 31, 2026<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
+        <div class="meta">1818 shares @ 5.5% → 5.5% • 18x potential</div>
     </div>
     <div class="right">
-        <div class="pnl green">+$1.01 (+1.0%)</div>
-        <div class="details">Maliyet: $100 → Değer: $101.01</div>
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$100 → $100.00</div>
     </div>
-</div></div><div class="history"><h2>📜 Trade Geçmişi</h2><div class="trade">
+</div><div class="position">
+    <div class="left">
+        <div class="name">by December 31, 2026<span class="risk-tag risk-yolo">🎲 YOLO</span></div>
+        <div class="meta">741 shares @ 13.5% → 13.5% • 7x potential</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$100 → $100.00</div>
+    </div>
+</div></div><div class="section"><h2>🌙 Moonshot <span class="badge">2 pos • $300</span></h2><div class="position">
+    <div class="left">
+        <div class="name">Victor Wembanyama<span class="risk-tag risk-moon">🌙 Moon</span></div>
+        <div class="meta">4545 shares @ 4.4% → 4.4% • 23x potential</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$200 → $200.00</div>
+    </div>
+</div><div class="position">
+    <div class="left">
+        <div class="name">June 30, 2026<span class="risk-tag risk-moon">🌙 Moon</span></div>
+        <div class="meta">2020 shares @ 5.0% → 5.0% • 20x potential</div>
+    </div>
+    <div class="right">
+        <div class="pnl green">+$0.00 (+0.0%)</div>
+        <div class="details">$100 → $100.00</div>
+    </div>
+</div></div><div class="history"><h2>📜 Son Trade'ler</h2><div class="trade">
     <span class="buy">ALIŞ</span>
     <span>None</span>
     <span>$300 @ 56.0%</span>
@@ -389,7 +409,7 @@ body {
     <span style="color:#666">2026-03-01 13:28</span>
 </div></div>
 <div class="footer">
-    Lando Paper Trading Dashboard • Powered by OpenClaw + Polymarket<br>
-    Başlangıç: $1,000 • Otomatik yenileme: 5dk
+    🎰 Lando Paper Trading • OpenClaw + Polymarket<br>
+    Hedef: G-Wagon ($180K) 🚗 • Otomatik güncelleme: 30dk
 </div>
 </body></html>
