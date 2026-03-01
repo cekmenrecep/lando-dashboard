@@ -27,6 +27,8 @@ SLUG_DESCRIPTIONS = {
     "oscars-2026-best-supporting-actor-winner": "🎬 Oscar 2026 - En İyi Yardımcı Erkek Oyuncu",
     "nba-eastern-conference-champion-442": "🏀 NBA Doğu Konferansı Şampiyonu",
     "will-the-iranian-regime-fall-by-the-end-of-2026": "🇮🇷 İran Rejimi 2027'den Önce Düşer mi?",
+    "2026-f1-drivers-champion": "🏎️ 2026 F1 Dünya Şampiyonu",
+    "f1-constructors-champion": "🏎️ 2026 F1 Constructors Şampiyonu",
 }
 
 with open(PORTFOLIO_PATH) as f:
@@ -216,7 +218,9 @@ for t in reversed(history[-15:]):
     desc = SLUG_DESCRIPTIONS.get(slug, "")
     outcome = t.get("outcome", slug)
     label = f"{outcome}" + (f" ({desc})" if desc else "")
-    html += f'<div class="tr"><span class="{ac}">{at}</span><span>{label}</span><span>${t["amount"]:.0f} @ {t["price"]*100:.1f}%</span><span style="color:#666">{ts}</span></div>'
+    amt = t.get("amount", 0)
+    price = t.get("price", 0)
+    html += f'<div class="tr"><span class="{ac}">{at}</span><span>{label}</span><span>${amt:.0f} @ {price*100:.1f}%</span><span style="color:#666">{ts}</span></div>'
 
 html += f'</div><div class="ft">🎰 Lando Paper Trading • OpenClaw + Polymarket<br>Hedef: G-Wagon ($180K) 🚗 • Auto-refresh: 30dk</div></body></html>'
 
