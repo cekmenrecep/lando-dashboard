@@ -7,27 +7,27 @@ OUTPUT_PATH = "/data/.openclaw/workspace/dashboard/index.html"
 SCRIPT = "/data/.openclaw/workspace/skills/polymarketodds/scripts/polymarket.py"
 
 SLUG_DESCRIPTIONS = {
-    "fed-decision-in-march-885": "🏦 Fed Mart Toplantısı - Faiz Kararı",
-    "who-will-trump-nominate-as-fed-chair": "🏛️ Trump'ın Fed Başkanı Adayı",
-    "oscars-2026-best-picture-winner": "🎬 Oscar 2026 - En İyi Film",
-    "what-will-happen-before-gta-vi": "🎮 GTA VI'dan Önce Ne Olacak?",
+    "fed-decision-in-march-885": "🏦 Fed March Meeting - Rate Decision",
+    "who-will-trump-nominate-as-fed-chair": "🏛️ Trump's Fed Chair Nominee",
+    "oscars-2026-best-picture-winner": "🎬 Oscars 2026 - Best Picture",
+    "what-will-happen-before-gta-vi": "🎮 What Happens Before GTA VI?",
     "nba-mvp-694": "🏀 NBA MVP 2026",
-    "us-x-russia-military-clash-by": "⚔️ ABD-Rusya Askeri Çatışma",
-    "kraken-ipo-in-2025": "📈 Kraken Halka Arz (IPO)",
-    "oscars-2026-best-actress-winner": "🎬 Oscar 2026 - En İyi Kadın Oyuncu",
-    "oscars-2026-best-actor-winner": "🎬 Oscar 2026 - En İyi Erkek Oyuncu",
-    "bitcoin-above-on-march-1": "₿ Bitcoin 1 Mart Fiyatı",
-    "oscars-2026-best-supporting-actress-winner": "🎬 Oscar 2026 - En İyi Yardımcı Kadın Oyuncu",
-    "nba-rookie-of-the-year-873": "🏀 NBA Yılın Çaylağı 2026",
-    "2026-nba-champion": "🏀 2026 NBA Şampiyonu",
-    "presidential-election-winner-2028": "🇺🇸 2028 ABD Başkanlık Seçimi",
-    "2026-fifa-world-cup-winner-595": "⚽ 2026 FIFA Dünya Kupası Şampiyonu",
-    "when-will-bitcoin-hit-150k": "₿ Bitcoin Ne Zaman $150K?",
-    "oscars-2026-best-supporting-actor-winner": "🎬 Oscar 2026 - En İyi Yardımcı Erkek Oyuncu",
-    "nba-eastern-conference-champion-442": "🏀 NBA Doğu Konferansı Şampiyonu",
-    "will-the-iranian-regime-fall-by-the-end-of-2026": "🇮🇷 İran Rejimi 2027'den Önce Düşer mi?",
-    "2026-f1-drivers-champion": "🏎️ 2026 F1 Dünya Şampiyonu",
-    "f1-constructors-champion": "🏎️ 2026 F1 Constructors Şampiyonu",
+    "us-x-russia-military-clash-by": "⚔️ US-Russia Military Clash",
+    "kraken-ipo-in-2025": "📈 Kraken IPO",
+    "oscars-2026-best-actress-winner": "🎬 Oscars 2026 - Best Actress",
+    "oscars-2026-best-actor-winner": "🎬 Oscars 2026 - Best Actor",
+    "bitcoin-above-on-march-1": "₿ Bitcoin March 1 Price",
+    "oscars-2026-best-supporting-actress-winner": "🎬 Oscars 2026 - Best Supporting Actress",
+    "nba-rookie-of-the-year-873": "🏀 NBA Rookie of the Year 2026",
+    "2026-nba-champion": "🏀 2026 NBA Champion",
+    "presidential-election-winner-2028": "🇺🇸 2028 US Presidential Election",
+    "2026-fifa-world-cup-winner-595": "⚽ 2026 FIFA World Cup Winner",
+    "when-will-bitcoin-hit-150k": "₿ When Will Bitcoin Hit $150K?",
+    "oscars-2026-best-supporting-actor-winner": "🎬 Oscars 2026 - Best Supporting Actor",
+    "nba-eastern-conference-champion-442": "🏀 NBA Eastern Conference Champion",
+    "will-the-iranian-regime-fall-by-the-end-of-2026": "🇮🇷 Will the Iranian Regime Fall by 2027?",
+    "2026-f1-drivers-champion": "🏎️ 2026 F1 World Champion",
+    "f1-constructors-champion": "🏎️ 2026 F1 Constructors Champion",
 }
 
 with open(PORTFOLIO_PATH) as f:
@@ -116,7 +116,7 @@ pnl_color = "green" if total_pnl >= 0 else "red"
 pnl_sign = "+" if total_pnl >= 0 else ""
 
 html = f"""<!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -171,18 +171,18 @@ body {{ background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-se
     <div class="pb"><div class="pf" style="width:{progress:.1f}%;background:linear-gradient(90deg,#00d4aa,#7c4dff);"></div></div>
 </div>
 <div class="stats">
-    <div class="sc"><div class="l">💰 Portföy</div><div class="v n">${portfolio_total:,.2f}</div></div>
-    <div class="sc"><div class="l">📊 Yatırılan</div><div class="v n">${total_cost:,.2f}</div></div>
+    <div class="sc"><div class="l">💰 Portfolio</div><div class="v n">${portfolio_total:,.2f}</div></div>
+    <div class="sc"><div class="l">📊 Invested</div><div class="v n">${total_cost:,.2f}</div></div>
     <div class="sc"><div class="l">📈 P&L</div><div class="v {pnl_color}">{pnl_sign}${total_pnl:,.2f} ({pnl_sign}{total_pnl_pct:.1f}%)</div></div>
-    <div class="sc"><div class="l">💵 Nakit</div><div class="v n">${cash:,.2f}</div></div>
+    <div class="sc"><div class="l">💵 Cash</div><div class="v n">${cash:,.2f}</div></div>
 </div>
 <div style="text-align:center;color:#666;font-size:0.75em;margin:4px 0;">
-    {len(live_data)} pozisyon • {n_safe} güvenli • {n_yolo} YOLO • {n_moon} moonshot
+    {len(live_data)} positions • {n_safe} safe • {n_yolo} YOLO • {n_moon} moonshot
 </div>
 """
 
 # All positions sorted by P&L
-html += f'<div class="sec"><h2>📊 Tüm Pozisyonlar <span class="bdg">{len(all_sorted)} pos • P&L sıralı</span></h2>'
+html += f'<div class="sec"><h2>📊 All Positions <span class="bdg">{len(all_sorted)} pos • sorted by P&L</span></h2>'
 for p in all_sorted:
     rc = p["risk"]
     pc = "g" if p["pnl"] >= 0 else "r"
@@ -190,7 +190,7 @@ for p in all_sorted:
     tag = "🛡️ Safe" if rc=="safe" else "🎲 YOLO" if rc=="yolo" else "🌙 Moon"
     pot = ""
     if rc in ("yolo","moon") and p["entry_price"] > 0:
-        pot = f' • Tutarsa {1/p["entry_price"]:.0f}x'
+        pot = f' • If it hits: {1/p["entry_price"]:.0f}x'
     html += f'''<div class="pos">
 <div class="top"><div style="flex:1;min-width:180px">
 <div class="nm">{p["name"]}<span class="rt-s rt-{rc}">{tag}</span></div>
@@ -202,10 +202,10 @@ for p in all_sorted:
 </div></div></div>'''
 html += '</div>'
 
-html += '<div class="hist"><h2>📜 Son Trade\'ler</h2>'
+html += '<div class="hist"><h2>📜 Recent Trades</h2>'
 for t in reversed(history[-15:]):
     ac = "g" if t["action"]=="buy" else "r"
-    at = "ALIŞ" if t["action"]=="buy" else "SATIŞ"
+    at = "BUY" if t["action"]=="buy" else "SELL"
     ts = t.get("at","")[:16].replace("T"," ")
     slug = t.get("slug","")
     desc = SLUG_DESCRIPTIONS.get(slug, "")
@@ -215,7 +215,7 @@ for t in reversed(history[-15:]):
     price = t.get("price", 0)
     html += f'<div class="tr"><span class="{ac}">{at}</span><span>{label}</span><span>${amt:.0f} @ {price*100:.1f}%</span><span style="color:#666">{ts}</span></div>'
 
-html += f'</div><div class="ft">🎰 Lando Paper Trading • OpenClaw + Polymarket<br>Hedef: G-Wagon ($180K) 🚗 • Auto-refresh: 30dk</div></body></html>'
+html += f'</div><div class="ft">🎰 Lando Paper Trading • OpenClaw + Polymarket<br>Target: G-Wagon ($180K) 🚗 • Auto-refresh: 30min</div></body></html>'
 
 with open(OUTPUT_PATH, "w") as f:
     f.write(html)
