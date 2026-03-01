@@ -6,7 +6,6 @@ PORTFOLIO_PATH = os.path.expanduser("~/.polymarket/portfolio.json")
 OUTPUT_PATH = "/data/.openclaw/workspace/dashboard/index.html"
 SCRIPT = "/data/.openclaw/workspace/skills/polymarketodds/scripts/polymarket.py"
 
-# Human-readable descriptions for each slug
 SLUG_DESCRIPTIONS = {
     "fed-decision-in-march-885": "🏦 Fed Mart Toplantısı - Faiz Kararı",
     "who-will-trump-nominate-as-fed-chair": "🏛️ Trump'ın Fed Başkanı Adayı",
@@ -38,20 +37,16 @@ history = portfolio.get("history", [])
 cash = portfolio.get("cash", 0)
 raw_positions = portfolio.get("positions", [])
 
-# Build slug lookup from raw positions
 slug_for_name = {}
 for p in raw_positions:
     outcome = p.get("outcome") or p.get("name") or ""
     slug_for_name[outcome] = p["slug"]
 
-# Parse portfolio command output
 r = subprocess.run(["python3", SCRIPT, "portfolio"], capture_output=True, text=True, timeout=60)
 output = r.stdout
 
 live_data = []
-total_value = 0
-total_cost = 0
-total_pnl = 0
+total_value = total_cost = total_pnl = 0
 
 lines = output.split("\n")
 i = 0
@@ -59,18 +54,17 @@ while i < len(lines):
     line = lines[i]
     if line.strip().startswith("🟢") or line.strip().startswith("🔴"):
         name = line.strip().replace("🟢", "").replace("🔴", "").replace("**", "").strip()
-        
         entry_price = current_price = 0
         shares = 0
         value = pnl_val = pnl_pct = 0
-        
+
         if i+1 < len(lines):
             m = re.search(r'(\d+)\s+shares\s+@\s+(\d+\.?\d*)%\s+→\s+(\d+\.?\d*)%', lines[i+1])
             if m:
                 shares = int(m.group(1))
                 entry_price = float(m.group(2)) / 100
                 current_price = float(m.group(3)) / 100
-        
+
         if i+2 < len(lines):
             vm = re.search(r'Value:\s*\$([0-9,]+\.?\d*)', lines[i+2])
             pm = re.search(r'P&L:\s*\$([+-]?[0-9,]+\.?\d*)\s+\(([+-]?\d+\.?\d*)%\)', lines[i+2])
@@ -78,26 +72,28 @@ while i < len(lines):
             if pm:
                 pnl_val = float(pm.group(1).replace(",", ""))
                 pnl_pct = float(pm.group(2))
-        
+
         cost = value - pnl_val
         total_value += value
         total_cost += cost
         total_pnl += pnl_val
-        
+
         slug = slug_for_name.get(name, "")
         desc = SLUG_DESCRIPTIONS.get(slug, slug.replace("-", " ").title())
-        
+
+        if entry_price >= 0.5:
+            risk = "safe"
+        elif entry_price >= 0.05:
+            risk = "yolo"
+        else:
+            risk = "moon"
+
         live_data.append({
-            "name": name,
-            "desc": desc,
-            "slug": slug,
-            "shares": shares,
-            "entry_price": entry_price,
-            "current_price": current_price,
-            "cost": round(cost, 2),
-            "value": round(value, 2),
-            "pnl": round(pnl_val, 2),
-            "pnl_pct": round(pnl_pct, 2),
+            "name": name, "desc": desc, "slug": slug, "shares": shares,
+            "entry_price": entry_price, "current_price": current_price,
+            "cost": round(cost, 2), "value": round(value, 2),
+            "pnl": round(pnl_val, 2), "pnl_pct": round(pnl_pct, 2),
+            "risk": risk,
         })
         i += 3
         continue
@@ -106,9 +102,12 @@ while i < len(lines):
 total_pnl_pct = (total_pnl / total_cost * 100) if total_cost > 0 else 0
 portfolio_total = cash + total_value
 
-safe = sorted([p for p in live_data if p["entry_price"] >= 0.5], key=lambda x: x["value"], reverse=True)
-yolo = sorted([p for p in live_data if 0.05 <= p["entry_price"] < 0.5], key=lambda x: x["value"], reverse=True)
-moonshot = sorted([p for p in live_data if p["entry_price"] < 0.05], key=lambda x: x["value"], reverse=True)
+# Sort by P&L descending
+all_sorted = sorted(live_data, key=lambda x: x["pnl"], reverse=True)
+
+n_safe = sum(1 for p in live_data if p["risk"]=="safe")
+n_yolo = sum(1 for p in live_data if p["risk"]=="yolo")
+n_moon = sum(1 for p in live_data if p["risk"]=="moon")
 
 now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 TARGET = 180000
@@ -178,22 +177,21 @@ body {{ background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-se
     <div class="sc"><div class="l">💵 Nakit</div><div class="v n">${cash:,.2f}</div></div>
 </div>
 <div style="text-align:center;color:#666;font-size:0.75em;margin:4px 0;">
-    {len(live_data)} pozisyon • {len(safe)} güvenli • {len(yolo)} YOLO • {len(moonshot)} moonshot
+    {len(live_data)} pozisyon • {n_safe} güvenli • {n_yolo} YOLO • {n_moon} moonshot
 </div>
 """
 
-def render(positions, emoji, title, rc):
-    if not positions: return ""
-    ts = sum(p["value"] for p in positions)
-    h = f'<div class="sec"><h2>{emoji} {title} <span class="bdg">{len(positions)} pos • ${ts:,.0f}</span></h2>'
-    for p in positions:
-        pc = "g" if p["pnl"] >= 0 else "r"
-        ps = "+" if p["pnl"] >= 0 else ""
-        tag = "🛡️ Safe" if rc=="safe" else "🎲 YOLO" if rc=="yolo" else "🌙 Moon"
-        pot = ""
-        if rc in ("yolo","moon") and p["entry_price"] > 0:
-            pot = f' • Tutarsa {1/p["entry_price"]:.0f}x'
-        h += f'''<div class="pos">
+# All positions sorted by P&L
+html += f'<div class="sec"><h2>📊 Tüm Pozisyonlar <span class="bdg">{len(all_sorted)} pos • P&L sıralı</span></h2>'
+for p in all_sorted:
+    rc = p["risk"]
+    pc = "g" if p["pnl"] >= 0 else "r"
+    ps = "+" if p["pnl"] >= 0 else ""
+    tag = "🛡️ Safe" if rc=="safe" else "🎲 YOLO" if rc=="yolo" else "🌙 Moon"
+    pot = ""
+    if rc in ("yolo","moon") and p["entry_price"] > 0:
+        pot = f' • Tutarsa {1/p["entry_price"]:.0f}x'
+    html += f'''<div class="pos">
 <div class="top"><div style="flex:1;min-width:180px">
 <div class="nm">{p["name"]}<span class="rt-s rt-{rc}">{tag}</span></div>
 <div class="desc">{p["desc"]}</div>
@@ -202,12 +200,7 @@ def render(positions, emoji, title, rc):
 <div class="pnl {pc}">{ps}${p["pnl"]:.2f} ({ps}{p["pnl_pct"]:.1f}%)</div>
 <div class="dt">${p["cost"]:.0f} → ${p["value"]:.2f}</div>
 </div></div></div>'''
-    h += '</div>'
-    return h
-
-html += render(safe, "🛡️", "Güvenli", "safe")
-html += render(yolo, "🎲", "YOLO", "yolo")
-html += render(moonshot, "🌙", "Moonshot", "moon")
+html += '</div>'
 
 html += '<div class="hist"><h2>📜 Son Trade\'ler</h2>'
 for t in reversed(history[-15:]):
