@@ -174,7 +174,7 @@ body {{ background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-se
 </div>
 <div class="stats">
     <div class="sc"><div class="l">💰 Portfolio</div><div class="v n">${portfolio_total:,.2f}</div></div>
-    <div class="sc"><div class="l">📊 Invested</div><div class="v n">${total_cost:,.2f}</div></div>
+    <div class="sc"><div class="l">💰 Starting</div><div class="v n">$1,000</div></div>
     <div class="sc"><div class="l">📈 Unrealized P&L</div><div class="v {pnl_color}">{pnl_sign}${total_pnl:,.2f} ({pnl_sign}{total_pnl_pct:.1f}%)</div></div>
     <div class="sc"><div class="l">💵 Cash</div><div class="v n">${cash:,.2f}</div></div>
 </div>
