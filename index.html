@@ -51,12 +51,12 @@ body { background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-ser
 <body>
 <div class="header">
     <h1>🎰 Lando's Paper Trading</h1>
-    <div class="sub">Polymarket • 2026-03-05 18:18 UTC</div>
+    <div class="sub">Polymarket • 2026-03-05 18:23 UTC</div>
 </div>
 <div class="target">
     <div class="car">🚗 G-Wagon Challenge</div>
-    <div class="goal">$456 / $180,000 (0.25%)</div>
-    <div class="pb"><div class="pf" style="width:0.3%;background:linear-gradient(90deg,#00d4aa,#7c4dff);"></div></div>
+    <div class="goal">$445 / $180,000 (0.25%)</div>
+    <div class="pb"><div class="pf" style="width:0.2%;background:linear-gradient(90deg,#00d4aa,#7c4dff);"></div></div>
 </div>
 
 <!-- CHART -->
@@ -64,30 +64,30 @@ body { background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-ser
     <h2>📈 Portfolio Performance</h2>
     <canvas id="portfolioChart" height="200"></canvas>
     <div style="margin-top:12px;">
-        <div class="total-row"><span class="label">💵 Cash:</span><span class="value">$49.51</span></div>
-        <div class="total-row"><span class="label">📊 Positions:</span><span class="value">$406.01</span></div>
-        <div class="total-row" style="border-top:1px solid #333;padding-top:8px;margin-top:4px;"><span class="label">💰 Total:</span><span class="value g">$455.52</span></div>
+        <div class="total-row"><span class="label">💵 Cash:</span><span class="value">$29.51</span></div>
+        <div class="total-row"><span class="label">📊 Positions:</span><span class="value">$415.56</span></div>
+        <div class="total-row" style="border-top:1px solid #333;padding-top:8px;margin-top:4px;"><span class="label">💰 Total:</span><span class="value g">$445.07</span></div>
     </div>
 </div>
 
 <div class="stats">
-    <div class="sc"><div class="l">💰 Total Value</div><div class="v n">$455.52</div></div>
+    <div class="sc"><div class="l">💰 Total Value</div><div class="v n">$445.07</div></div>
     <div class="sc"><div class="l">💰 Starting</div><div class="v n">$1,000</div></div>
-    <div class="sc"><div class="l">📈 P&L</div><div class="v red">$-544.48 (-54.4%)</div></div>
-    <div class="sc"><div class="l">💵 Cash</div><div class="v n">$49.51</div></div>
+    <div class="sc"><div class="l">📈 P&L</div><div class="v red">$-554.93 (-55.5%)</div></div>
+    <div class="sc"><div class="l">💵 Cash</div><div class="v n">$29.51</div></div>
 </div>
 <div style="text-align:center;color:#666;font-size:0.75em;margin:4px 0;">
-    9 positions • 0 safe • 9 YOLO • 0 moonshot
+    11 positions • 1 safe • 10 YOLO • 0 moonshot
 </div>
 <script>
 const ctx = document.getElementById('portfolioChart').getContext('2d');
 new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ["03/05 13:07", "03/05 13:12", "03/05 15:18", "03/05 16:05", "03/05 16:09", "03/05 16:09", "03/05 18:18"],
+        labels: ["03/05 13:07", "03/05 13:12", "03/05 15:18", "03/05 16:05", "03/05 16:09", "03/05 16:09", "03/05 18:18", "03/05 18:23"],
         datasets: [{
             label: 'Total Portfolio',
-            data: [453.95358080322444, 454.01358080322444, 455.37358080322446, 455.8935808032245, 455.6935808032245, 455.6535808032245, 455.52358080322455],
+            data: [453.95358080322444, 454.01358080322444, 455.37358080322446, 455.8935808032245, 455.6935808032245, 455.6535808032245, 455.52358080322455, 445.07358080322456],
             borderColor: '#00d4aa',
             backgroundColor: 'rgba(0,212,170,0.1)',
             fill: true,
@@ -96,7 +96,7 @@ new Chart(ctx, {
             pointBackgroundColor: '#00d4aa'
         }, {
             label: 'Cash',
-            data: [98.5135808032245, 89.5135808032245, 89.5135808032245, 74.5135808032245, 59.5135808032245, 49.5135808032245, 49.5135808032245],
+            data: [98.5135808032245, 89.5135808032245, 89.5135808032245, 74.5135808032245, 59.5135808032245, 49.5135808032245, 49.5135808032245, 29.5135808032245],
             borderColor: '#7c4dff',
             backgroundColor: 'transparent',
             borderDash: [5, 5],
@@ -116,7 +116,7 @@ new Chart(ctx, {
         }
     }
 });
-</script><div class="sec"><h2>📊 All Positions <span class="bdg">9 pos • sorted by P&L</span></h2><div class="pos">
+</script><div class="sec"><h2>📊 All Positions <span class="bdg">11 pos • sorted by P&L</span></h2><div class="pos">
 <div class="top"><div style="flex:1;min-width:180px">
 <div class="nm">Marco Rubio<span class="rt-s rt-yolo">🎲 YOLO</span></div>
 <div class="desc">🇺🇸 2028 US Presidential Election</div>
@@ -174,6 +174,14 @@ new Chart(ctx, {
 <div class="dt">$9 → $8.82</div>
 </div></div></div><div class="pos">
 <div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">Denver Nuggets<span class="rt-s rt-yolo">🎲 YOLO</span></div>
+<div class="desc">🏀 2026 NBA Champion</div>
+<div class="mt">91 sh @ 11.0% → 10.5% • If it hits: 9x</div>
+</div><div class="rt">
+<div class="pnl r">$-0.45 (-4.5%)</div>
+<div class="dt">$10 → $9.55</div>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
 <div class="nm">Nikita Kucherov<span class="rt-s rt-yolo">🎲 YOLO</span></div>
 <div class="desc">🏒 NHL Art Ross Trophy</div>
 <div class="mt">280 sh @ 35.6% → 32.6% • If it hits: 3x</div>
@@ -188,4 +196,12 @@ new Chart(ctx, {
 </div><div class="rt">
 <div class="pnl r">$-8.99 (-10.4%)</div>
 <div class="dt">$86 → $77.36</div>
-</div></div></div></div><div class="hist"><h2>📜 Recent Trades</h2><div class="tr"><span class="g">BUY</span><span>San Antonio Spurs (🏀 2026 NBA Champion)</span><span>$10 @ 11.9%</span><span style="color:#666">2026-03-05 16:09</span></div><div class="tr"><span class="g">BUY</span><span>Oklahoma City Thunder (🏀 2026 NBA Champion)</span><span>$15 @ 37.0%</span><span style="color:#666">2026-03-05 16:09</span></div><div class="tr"><span class="g">BUY</span><span>Spain (⚽ 2026 FIFA World Cup Winner)</span><span>$15 @ 15.2%</span><span style="color:#666">2026-03-05 16:05</span></div><div class="tr"><span class="g">BUY</span><span>Portugal (⚽ 2026 FIFA World Cup Winner)</span><span>$9 @ 7.3%</span><span style="color:#666">2026-03-05 13:11</span></div><div class="tr"><span class="g">BUY</span><span>Nikita Kucherov (🏒 NHL Art Ross Trophy)</span><span>$98 @ 35.5%</span><span style="color:#666">2026-03-04 08:59</span></div><div class="tr"><span class="r">SELL</span><span>2026-fifa-world-cup-winner-595 (⚽ 2026 FIFA World Cup Winner)</span><span>$0 @ 10.6%</span><span style="color:#666">2026-03-04 08:57</span></div><div class="tr"><span class="r">SELL</span><span>uefa-champions-league-winner</span><span>$0 @ 26.0%</span><span style="color:#666">2026-03-04 08:57</span></div><div class="tr"><span class="r">SELL</span><span>who-will-trump-nominate-as-fed-chair (🏛️ Trump's Fed Chair Nominee)</span><span>$0 @ 93.3%</span><span style="color:#666">2026-03-04 08:54</span></div><div class="tr"><span class="r">SELL</span><span>democratic-presidential-nominee-2028</span><span>$0 @ 25.2%</span><span style="color:#666">2026-03-04 08:54</span></div><div class="tr"><span class="g">BUY</span><span>Charles Leclerc (🏎️ 2026 F1 World Champion)</span><span>$27 @ 14.6%</span><span style="color:#666">2026-03-04 08:45</span></div><div class="tr"><span class="g">BUY</span><span>Real Madrid (⚽ La Liga Winner)</span><span>$27 @ 24.0%</span><span style="color:#666">2026-03-04 08:43</span></div><div class="tr"><span class="r">SELL</span><span>will-israel-strike-lebanon-on-363</span><span>$0 @ 99.9%</span><span style="color:#666">2026-03-04 08:42</span></div><div class="tr"><span class="g">BUY</span><span>Real Madrid (⚽ La Liga Winner)</span><span>$29 @ 24.0%</span><span style="color:#666">2026-03-03 17:15</span></div><div class="tr"><span class="g">BUY</span><span>Real Madrid (⚽ La Liga Winner)</span><span>$30 @ 24.0%</span><span style="color:#666">2026-03-03 11:05</span></div><div class="tr"><span class="r">SELL</span><span>la-liga-winner-114 (⚽ La Liga Winner)</span><span>$0 @ 73.0%</span><span style="color:#666">2026-03-03 11:04</span></div></div><div class="ft">🎰 Lando Paper Trading • OpenClaw + Polymarket<br>Target: G-Wagon ($180K) 🚗 • Auto-refresh: 30min</div></body></html>
+</div></div></div><div class="pos">
+<div class="top"><div style="flex:1;min-width:180px">
+<div class="nm">March 31<span class="rt-s rt-safe">🛡️ Safe</span></div>
+<div class="desc">Will Iran Close The Strait Of Hormuz By 2027</div>
+<div class="mt">10 sh @ 100.0% → 0.0%</div>
+</div><div class="rt">
+<div class="pnl r">$-10.00 (-100.0%)</div>
+<div class="dt">$10 → $0.00</div>
+</div></div></div></div><div class="hist"><h2>📜 Recent Trades</h2><div class="tr"><span class="g">BUY</span><span>Denver Nuggets (🏀 2026 NBA Champion)</span><span>$10 @ 11.0%</span><span style="color:#666">2026-03-05 18:22</span></div><div class="tr"><span class="g">BUY</span><span>March 31</span><span>$10 @ 100.0%</span><span style="color:#666">2026-03-05 18:22</span></div><div class="tr"><span class="g">BUY</span><span>San Antonio Spurs (🏀 2026 NBA Champion)</span><span>$10 @ 11.9%</span><span style="color:#666">2026-03-05 16:09</span></div><div class="tr"><span class="g">BUY</span><span>Oklahoma City Thunder (🏀 2026 NBA Champion)</span><span>$15 @ 37.0%</span><span style="color:#666">2026-03-05 16:09</span></div><div class="tr"><span class="g">BUY</span><span>Spain (⚽ 2026 FIFA World Cup Winner)</span><span>$15 @ 15.2%</span><span style="color:#666">2026-03-05 16:05</span></div><div class="tr"><span class="g">BUY</span><span>Portugal (⚽ 2026 FIFA World Cup Winner)</span><span>$9 @ 7.3%</span><span style="color:#666">2026-03-05 13:11</span></div><div class="tr"><span class="g">BUY</span><span>Nikita Kucherov (🏒 NHL Art Ross Trophy)</span><span>$98 @ 35.5%</span><span style="color:#666">2026-03-04 08:59</span></div><div class="tr"><span class="r">SELL</span><span>2026-fifa-world-cup-winner-595 (⚽ 2026 FIFA World Cup Winner)</span><span>$0 @ 10.6%</span><span style="color:#666">2026-03-04 08:57</span></div><div class="tr"><span class="r">SELL</span><span>uefa-champions-league-winner</span><span>$0 @ 26.0%</span><span style="color:#666">2026-03-04 08:57</span></div><div class="tr"><span class="r">SELL</span><span>who-will-trump-nominate-as-fed-chair (🏛️ Trump's Fed Chair Nominee)</span><span>$0 @ 93.3%</span><span style="color:#666">2026-03-04 08:54</span></div><div class="tr"><span class="r">SELL</span><span>democratic-presidential-nominee-2028</span><span>$0 @ 25.2%</span><span style="color:#666">2026-03-04 08:54</span></div><div class="tr"><span class="g">BUY</span><span>Charles Leclerc (🏎️ 2026 F1 World Champion)</span><span>$27 @ 14.6%</span><span style="color:#666">2026-03-04 08:45</span></div><div class="tr"><span class="g">BUY</span><span>Real Madrid (⚽ La Liga Winner)</span><span>$27 @ 24.0%</span><span style="color:#666">2026-03-04 08:43</span></div><div class="tr"><span class="r">SELL</span><span>will-israel-strike-lebanon-on-363</span><span>$0 @ 99.9%</span><span style="color:#666">2026-03-04 08:42</span></div><div class="tr"><span class="g">BUY</span><span>Real Madrid (⚽ La Liga Winner)</span><span>$29 @ 24.0%</span><span style="color:#666">2026-03-03 17:15</span></div></div><div class="ft">🎰 Lando Paper Trading • OpenClaw + Polymarket<br>Target: G-Wagon ($180K) 🚗 • Auto-refresh: 30min</div></body></html>
