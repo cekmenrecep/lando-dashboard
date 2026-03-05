@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Generate Polymarket Paper Trading Dashboard HTML"""
+"""Generate Polymarket Paper Trading Dashboard HTML with Chart"""
 import json, os, subprocess, datetime, re
 
 PORTFOLIO_PATH = os.path.expanduser("~/.polymarket/portfolio.json")
 OUTPUT_PATH = "/data/.openclaw/workspace/dashboard/index.html"
+HISTORY_PATH = "/data/.openclaw/workspace/dashboard/portfolio_history.json"
 SCRIPT = "/data/.openclaw/workspace/skills/polymarketodds/scripts/polymarket.py"
 
 SLUG_DESCRIPTIONS = {
@@ -28,14 +29,34 @@ SLUG_DESCRIPTIONS = {
     "will-the-iranian-regime-fall-by-the-end-of-2026": "🇮🇷 Will the Iranian Regime Fall by 2027?",
     "2026-f1-drivers-champion": "🏎️ 2026 F1 World Champion",
     "f1-constructors-champion": "🏎️ 2026 F1 Constructors Champion",
+    "la-liga-winner-114": "⚽ La Liga Winner",
+    "nhl-2025-26-art-ross-trophy": "🏒 NHL Art Ross Trophy",
 }
 
+# Load portfolio
 with open(PORTFOLIO_PATH) as f:
     portfolio = json.load(f)
 
 history = portfolio.get("history", [])
 cash = portfolio.get("cash", 0)
 raw_positions = portfolio.get("positions", [])
+
+# Load or create portfolio history for chart
+if os.path.exists(HISTORY_PATH):
+    with open(HISTORY_PATH) as f:
+        portfolio_history = json.load(f)
+else:
+    portfolio_history = []
+
+# Save current snapshot
+now_ts = datetime.datetime.now(datetime.timezone.utc)
+snapshot = {
+    "timestamp": now_ts.isoformat(),
+    "date": now_ts.strftime("%m/%d %H:%M"),
+    "cash": cash,
+    "positions_value": 0,  # will be updated below
+    "total": 0  # will be updated below
+}
 
 slug_for_name = {}
 for p in raw_positions:
@@ -100,7 +121,18 @@ while i < len(lines):
     i += 1
 
 STARTING_CAPITAL = 1000
-portfolio_total = cash + total_value
+portfolio_total = cash + total_value  # CASH IS INCLUDED!
+snapshot["positions_value"] = total_value
+snapshot["total"] = portfolio_total
+
+# Add to history if different from last entry (to avoid duplicates)
+if not portfolio_history or portfolio_history[-1]["total"] != portfolio_total:
+    portfolio_history.append(snapshot)
+    # Keep only last 100 entries
+    portfolio_history = portfolio_history[-100:]
+    with open(HISTORY_PATH, "w") as f:
+        json.dump(portfolio_history, f)
+
 total_pnl = portfolio_total - STARTING_CAPITAL
 total_pnl_pct = (total_pnl / STARTING_CAPITAL * 100) if STARTING_CAPITAL > 0 else 0
 
@@ -112,10 +144,16 @@ n_yolo = sum(1 for p in live_data if p["risk"]=="yolo")
 n_moon = sum(1 for p in live_data if p["risk"]=="moon")
 
 now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+now_short = datetime.datetime.now(datetime.timezone.utc).strftime("%m/%d %H:%M")
 TARGET = 180000
 progress = min(portfolio_total / TARGET * 100, 100)
 pnl_color = "green" if total_pnl >= 0 else "red"
 pnl_sign = "+" if total_pnl >= 0 else ""
+
+# Prepare chart data
+chart_labels = [h["date"] for h in portfolio_history]
+chart_data = [h["total"] for h in portfolio_history]
+chart_cash = [h["cash"] for h in portfolio_history]
 
 html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -124,6 +162,7 @@ html = f"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="refresh" content="300">
 <title>🎰 Lando's Trading Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 * {{ margin: 0; padding: 0; box-sizing: border-box; }}
 body {{ background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-serif; padding: 16px; min-height: 100vh; }}
@@ -160,6 +199,10 @@ body {{ background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-se
 .hist {{ margin-top: 24px; }}
 .tr {{ display: flex; justify-content: space-between; padding: 8px 12px; border-bottom: 1px solid #1a1a2a; font-size: 0.8em; }}
 .ft {{ text-align: center; padding: 24px 0; color: #444; font-size: 0.75em; }}
+.chart-container {{ background: #14141f; border-radius: 12px; padding: 16px; margin: 16px 0; border: 1px solid #222; }}
+.total-row {{ display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.85em; }}
+.total-row .label {{ color: #888; }}
+.total-row .value {{ font-weight: 600; }}
 </style>
 </head>
 <body>
@@ -172,16 +215,68 @@ body {{ background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-se
     <div class="goal">${portfolio_total:,.0f} / $180,000 ({progress:.2f}%)</div>
     <div class="pb"><div class="pf" style="width:{progress:.1f}%;background:linear-gradient(90deg,#00d4aa,#7c4dff);"></div></div>
 </div>
+
+<!-- CHART -->
+<div class="chart-container">
+    <h2>📈 Portfolio Performance</h2>
+    <canvas id="portfolioChart" height="200"></canvas>
+    <div style="margin-top:12px;">
+        <div class="total-row"><span class="label">💵 Cash:</span><span class="value">${cash:,.2f}</span></div>
+        <div class="total-row"><span class="label">📊 Positions:</span><span class="value">${total_value:,.2f}</span></div>
+        <div class="total-row" style="border-top:1px solid #333;padding-top:8px;margin-top:4px;"><span class="label">💰 Total:</span><span class="value g">${portfolio_total:,.2f}</span></div>
+    </div>
+</div>
+
 <div class="stats">
-    <div class="sc"><div class="l">💰 Portfolio</div><div class="v n">${portfolio_total:,.2f}</div></div>
+    <div class="sc"><div class="l">💰 Total Value</div><div class="v n">${portfolio_total:,.2f}</div></div>
     <div class="sc"><div class="l">💰 Starting</div><div class="v n">$1,000</div></div>
-    <div class="sc"><div class="l">📈 Unrealized P&L</div><div class="v {pnl_color}">{pnl_sign}${total_pnl:,.2f} ({pnl_sign}{total_pnl_pct:.1f}%)</div></div>
+    <div class="sc"><div class="l">📈 P&L</div><div class="v {pnl_color}">{pnl_sign}${total_pnl:,.2f} ({pnl_sign}{total_pnl_pct:.1f}%)</div></div>
     <div class="sc"><div class="l">💵 Cash</div><div class="v n">${cash:,.2f}</div></div>
 </div>
 <div style="text-align:center;color:#666;font-size:0.75em;margin:4px 0;">
     {len(live_data)} positions • {n_safe} safe • {n_yolo} YOLO • {n_moon} moonshot
 </div>
 """
+
+# Chart JS
+html += f"""<script>
+const ctx = document.getElementById('portfolioChart').getContext('2d');
+new Chart(ctx, {{
+    type: 'line',
+    data: {{
+        labels: {json.dumps(chart_labels)},
+        datasets: [{{
+            label: 'Total Portfolio',
+            data: {json.dumps(chart_data)},
+            borderColor: '#00d4aa',
+            backgroundColor: 'rgba(0,212,170,0.1)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 3,
+            pointBackgroundColor: '#00d4aa'
+        }}, {{
+            label: 'Cash',
+            data: {json.dumps(chart_cash)},
+            borderColor: '#7c4dff',
+            backgroundColor: 'transparent',
+            borderDash: [5, 5],
+            tension: 0.3,
+            pointRadius: 2,
+            pointBackgroundColor: '#7c4dff'
+        }}]
+    }},
+    options: {{
+        responsive: true,
+        plugins: {{
+            legend: {{ labels: {{ color: '#888' }} }}
+        }},
+        scales: {{
+            x: {{ ticks: {{ color: '#666', maxRotation: 45 }}, grid: {{ color: '#222' }} }},
+            y: {{ ticks: {{ color: '#666', callback: v => '$' + v }}, grid: {{ color: '#222' }} }}
+        }}
+    }}
+}});
+</script>"""
 
 # All positions sorted by P&L
 html += f'<div class="sec"><h2>📊 All Positions <span class="bdg">{len(all_sorted)} pos • sorted by P&L</span></h2>'
@@ -221,4 +316,12 @@ html += f'</div><div class="ft">🎰 Lando Paper Trading • OpenClaw + Polymark
 
 with open(OUTPUT_PATH, "w") as f:
     f.write(html)
-print(f"Dashboard generated - {len(live_data)} positions, P&L: ${total_pnl:+.2f}")
+
+# Commit and push
+try:
+    subprocess.run(["git", "add", "."], cwd="/data/.openclaw/workspace/dashboard", capture_output=True)
+    subprocess.run(["git", "commit", "-m", f"Update: {now_short} - ${portfolio_total:,.0f}"], cwd="/data/.openclaw/workspace/dashboard", capture_output=True)
+    subprocess.run(["git", "push"], cwd="/data/.openclaw/workspace/dashboard", capture_output=True, timeout=30)
+    print(f"✅ Dashboard updated and pushed! Total: ${portfolio_total:,.2f} (cash: ${cash:,.2f})")
+except Exception as e:
+    print(f"Dashboard generated - {len(live_data)} positions, Total: ${portfolio_total:,.2f}, Cash: ${cash:,.2f}")
