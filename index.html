@@ -51,7 +51,7 @@ body { background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-ser
 <body>
 <div class="header">
     <h1>🎰 Lando's Paper Trading</h1>
-    <div class="sub">Polymarket • 2026-03-05 16:09 UTC</div>
+    <div class="sub">Polymarket • 2026-03-05 18:18 UTC</div>
 </div>
 <div class="target">
     <div class="car">🚗 G-Wagon Challenge</div>
@@ -65,15 +65,15 @@ body { background: #0a0a0f; color: #e0e0e0; font-family: -apple-system, sans-ser
     <canvas id="portfolioChart" height="200"></canvas>
     <div style="margin-top:12px;">
         <div class="total-row"><span class="label">💵 Cash:</span><span class="value">$49.51</span></div>
-        <div class="total-row"><span class="label">📊 Positions:</span><span class="value">$406.14</span></div>
-        <div class="total-row" style="border-top:1px solid #333;padding-top:8px;margin-top:4px;"><span class="label">💰 Total:</span><span class="value g">$455.65</span></div>
+        <div class="total-row"><span class="label">📊 Positions:</span><span class="value">$406.01</span></div>
+        <div class="total-row" style="border-top:1px solid #333;padding-top:8px;margin-top:4px;"><span class="label">💰 Total:</span><span class="value g">$455.52</span></div>
     </div>
 </div>
 
 <div class="stats">
-    <div class="sc"><div class="l">💰 Total Value</div><div class="v n">$455.65</div></div>
+    <div class="sc"><div class="l">💰 Total Value</div><div class="v n">$455.52</div></div>
     <div class="sc"><div class="l">💰 Starting</div><div class="v n">$1,000</div></div>
-    <div class="sc"><div class="l">📈 P&L</div><div class="v red">$-544.35 (-54.4%)</div></div>
+    <div class="sc"><div class="l">📈 P&L</div><div class="v red">$-544.48 (-54.4%)</div></div>
     <div class="sc"><div class="l">💵 Cash</div><div class="v n">$49.51</div></div>
 </div>
 <div style="text-align:center;color:#666;font-size:0.75em;margin:4px 0;">
@@ -84,10 +84,10 @@ const ctx = document.getElementById('portfolioChart').getContext('2d');
 new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ["03/05 13:07", "03/05 13:12", "03/05 15:18", "03/05 16:05", "03/05 16:09", "03/05 16:09"],
+        labels: ["03/05 13:07", "03/05 13:12", "03/05 15:18", "03/05 16:05", "03/05 16:09", "03/05 16:09", "03/05 18:18"],
         datasets: [{
             label: 'Total Portfolio',
-            data: [453.95358080322444, 454.01358080322444, 455.37358080322446, 455.8935808032245, 455.6935808032245, 455.6535808032245],
+            data: [453.95358080322444, 454.01358080322444, 455.37358080322446, 455.8935808032245, 455.6935808032245, 455.6535808032245, 455.52358080322455],
             borderColor: '#00d4aa',
             backgroundColor: 'rgba(0,212,170,0.1)',
             fill: true,
@@ -96,7 +96,7 @@ new Chart(ctx, {
             pointBackgroundColor: '#00d4aa'
         }, {
             label: 'Cash',
-            data: [98.5135808032245, 89.5135808032245, 89.5135808032245, 74.5135808032245, 59.5135808032245, 49.5135808032245],
+            data: [98.5135808032245, 89.5135808032245, 89.5135808032245, 74.5135808032245, 59.5135808032245, 49.5135808032245, 49.5135808032245],
             borderColor: '#7c4dff',
             backgroundColor: 'transparent',
             borderDash: [5, 5],
@@ -144,10 +144,10 @@ new Chart(ctx, {
 <div class="top"><div style="flex:1;min-width:180px">
 <div class="nm">San Antonio Spurs<span class="rt-s rt-yolo">🎲 YOLO</span></div>
 <div class="desc">🏀 2026 NBA Champion</div>
-<div class="mt">84 sh @ 11.9% → 11.8% • If it hits: 8x</div>
+<div class="mt">84 sh @ 11.9% → 11.9% • If it hits: 8x</div>
 </div><div class="rt">
-<div class="pnl r">$-0.04 (-0.4%)</div>
-<div class="dt">$10 → $9.96</div>
+<div class="pnl g">+$0.04 (+0.4%)</div>
+<div class="dt">$10 → $10.04</div>
 </div></div></div><div class="pos">
 <div class="top"><div style="flex:1;min-width:180px">
 <div class="nm">Spain<span class="rt-s rt-yolo">🎲 YOLO</span></div>
@@ -170,16 +170,16 @@ new Chart(ctx, {
 <div class="desc">⚽ 2026 FIFA World Cup Winner</div>
 <div class="mt">123 sh @ 7.3% → 7.1% • If it hits: 14x</div>
 </div><div class="rt">
-<div class="pnl r">$-0.25 (-2.7%)</div>
-<div class="dt">$9 → $8.75</div>
+<div class="pnl r">$-0.18 (-2.1%)</div>
+<div class="dt">$9 → $8.82</div>
 </div></div></div><div class="pos">
 <div class="top"><div style="flex:1;min-width:180px">
 <div class="nm">Nikita Kucherov<span class="rt-s rt-yolo">🎲 YOLO</span></div>
 <div class="desc">🏒 NHL Art Ross Trophy</div>
-<div class="mt">280 sh @ 35.6% → 32.8% • If it hits: 3x</div>
+<div class="mt">280 sh @ 35.6% → 32.6% • If it hits: 3x</div>
 </div><div class="rt">
-<div class="pnl r">$-7.89 (-7.9%)</div>
-<div class="dt">$100 → $91.77</div>
+<div class="pnl r">$-8.17 (-8.2%)</div>
+<div class="dt">$100 → $91.49</div>
 </div></div></div><div class="pos">
 <div class="top"><div style="flex:1;min-width:180px">
 <div class="nm">Real Madrid<span class="rt-s rt-yolo">🎲 YOLO</span></div>
